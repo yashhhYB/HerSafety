@@ -7,6 +7,8 @@ import {
   type SafeZone, type InsertSafeZone,
   type UserSettings, type InsertUserSettings
 } from "@shared/schema";
+import { db } from "./db";
+import { eq } from "drizzle-orm";
 
 export interface IStorage {
   // User methods
@@ -265,4 +267,126 @@ export class MemStorage implements IStorage {
   }
 }
 
-export const storage = new MemStorage();
+// Database Storage Implementation
+export class DatabaseStorage implements IStorage {
+  async getUser(id: number): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.id, id));
+    return user || undefined;
+  }
+
+  async getUserByUsername(username: string): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.username, username));
+    return user || undefined;
+  }
+
+  async createUser(insertUser: InsertUser): Promise<User> {
+    const [user] = await db
+      .insert(users)
+      .values(insertUser)
+      .returning();
+    return user;
+  }
+
+  async getEmergencyContacts(userId: number): Promise<EmergencyContact[]> {
+    return await db.select().from(emergencyContacts).where(eq(emergencyContacts.userId, userId));
+  }
+
+  async createEmergencyContact(contact: InsertEmergencyContact): Promise<EmergencyContact> {
+    const [newContact] = await db
+      .insert(emergencyContacts)
+      .values(contact)
+      .returning();
+    return newContact;
+  }
+
+  async updateEmergencyContact(id: number, contact: Partial<InsertEmergencyContact>): Promise<EmergencyContact | undefined> {
+    const [updated] = await db
+      .update(emergencyContacts)
+      .set(contact)
+      .where(eq(emergencyContacts.id, id))
+      .returning();
+    return updated || undefined;
+  }
+
+  async deleteEmergencyContact(id: number): Promise<boolean> {
+    const result = await db.delete(emergencyContacts).where(eq(emergencyContacts.id, id));
+    return (result.rowCount || 0) > 0;
+  }
+
+  async getIncidents(limit = 10): Promise<Incident[]> {
+    return await db.select().from(incidents).orderBy(incidents.createdAt).limit(limit);
+  }
+
+  async getIncidentsByUser(userId: number): Promise<Incident[]> {
+    return await db.select().from(incidents).where(eq(incidents.userId, userId));
+  }
+
+  async createIncident(incident: InsertIncident): Promise<Incident> {
+    const [newIncident] = await db
+      .insert(incidents)
+      .values(incident)
+      .returning();
+    return newIncident;
+  }
+
+  async getSosAlerts(userId: number): Promise<SosAlert[]> {
+    return await db.select().from(sosAlerts).where(eq(sosAlerts.userId, userId));
+  }
+
+  async createSosAlert(alert: InsertSosAlert): Promise<SosAlert> {
+    const [newAlert] = await db
+      .insert(sosAlerts)
+      .values(alert)
+      .returning();
+    return newAlert;
+  }
+
+  async updateSosAlertStatus(id: number, status: string): Promise<SosAlert | undefined> {
+    const [updated] = await db
+      .update(sosAlerts)
+      .set({ status })
+      .where(eq(sosAlerts.id, id))
+      .returning();
+    return updated || undefined;
+  }
+
+  async getSafeZones(): Promise<SafeZone[]> {
+    return await db.select().from(safeZones);
+  }
+
+  async getSafeZonesByType(type: string): Promise<SafeZone[]> {
+    return await db.select().from(safeZones).where(eq(safeZones.type, type));
+  }
+
+  async createSafeZone(safeZone: InsertSafeZone): Promise<SafeZone> {
+    const [newZone] = await db
+      .insert(safeZones)
+      .values(safeZone)
+      .returning();
+    return newZone;
+  }
+
+  async getUserSettings(userId: number): Promise<UserSettings | undefined> {
+    const [settings] = await db.select().from(userSettings).where(eq(userSettings.userId, userId));
+    return settings || undefined;
+  }
+
+  async createUserSettings(settings: InsertUserSettings): Promise<UserSettings> {
+    const [newSettings] = await db
+      .insert(userSettings)
+      .values(settings)
+      .returning();
+    return newSettings;
+  }
+
+  async updateUserSettings(userId: number, settings: Partial<InsertUserSettings>): Promise<UserSettings | undefined> {
+    const [updated] = await db
+      .update(userSettings)
+      .set(settings)
+      .where(eq(userSettings.userId, userId))
+      .returning();
+    return updated || undefined;
+  }
+}
+
+export const storage = new DatabaseStorage();

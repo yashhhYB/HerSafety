@@ -17,7 +17,7 @@ Sefty1st is a comprehensive women's safety mobile application built as a Progres
 ### Backend Architecture
 - **Runtime**: Node.js with Express.js server
 - **Language**: TypeScript with ES modules
-- **Storage**: In-memory storage with PostgreSQL-ready schema using Drizzle ORM
+- **Storage**: PostgreSQL database with Drizzle ORM
 - **Session Management**: Express sessions with PostgreSQL session store
 - **API Design**: RESTful API with JSON responses
 
@@ -25,7 +25,8 @@ Sefty1st is a comprehensive women's safety mobile application built as a Progres
 - **ORM**: Drizzle ORM with PostgreSQL dialect
 - **Schema**: Type-safe database schema with Zod validation
 - **Migrations**: Drizzle Kit for database migrations
-- **Connection**: Neon Database serverless PostgreSQL (configured but not yet connected)
+- **Connection**: PostgreSQL database with Neon serverless driver
+- **Data**: Seeded with sample safe zones for testing
 
 ## Key Components
 
@@ -122,6 +123,10 @@ Changelog:
   * Live Threat Radar with real-time safety alerts
   * SafeRoute Navigator with AI-optimized route planning
   * Enhanced mobile-first design with floating cards and glass morphism
+- June 25, 2025. Integrated PostgreSQL database:
+  * Replaced in-memory storage with persistent database
+  * Added database seeding with sample safe zones
+  * Configured Drizzle ORM for type-safe database operations
 ```
 
 ## User Preferences
