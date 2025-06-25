@@ -1,0 +1,143 @@
+Create a full-stack, scalable, mobile-first web app called **Sefty1st** that combines women's safety features and real-time incident alerts from emergency radio streams (similar to HearShot). Use modern and beautiful UI with bottom tab navigation and animated cards.
+
+---
+
+🔧 TECH STACK
+Frontend:
+- React.js with Tailwind CSS and ShadCN UI for components and mobile-first design
+- Google Maps API or Mapbox for maps and locations
+- Lottie animations for smooth UI
+
+Backend:
+- Node.js with Express.js OR Python with FastAPI (modular)
+- Supabase for database, authentication, and real-time event broadcasting
+- Twilio API for SMS & email alerts
+- OpenAI Whisper API or Deepgram for speech-to-text transcription
+- GPT-4 or Claude AI for natural language processing and location extraction
+
+---
+
+📱 MAIN FEATURES:
+
+1. **Home Page**
+- Greeting: “Welcome to Sefty1st. You are not alone.”
+- 4 animated action cards:
+  - 🔴 SOS Help
+  - 🗺 Find Nearby Help
+  - 📤 Report Incident
+  - 📚 Learn About Safety
+
+2. **SOS System**
+- “Need Help Now?” button
+- On click: Get current location, send custom alert with live GPS to 3 emergency contacts via Twilio SMS & email
+- Show a confirmation: “Alert sent. Stay calm.”
+- Include gesture support (tap 3x) & optional voice trigger (“Help me”)
+- Show live map with user tracking
+
+3. **Real-time Police Incident Alerts (HearShot Features)**
+- Use public audio stream (or mock for now)
+- Transcribe with Whisper API / Deepgram
+- Parse location and event using GPT-4
+- Store in Supabase `incidents` table
+- Push alerts to users within 5km
+- Display on map as live markers
+- Incident card: “Police reported assault at FC Road – 8 mins ago.”
+
+4. **Safe Zones Map**
+- Show user’s location (blinking)
+- Nearby: Police stations, hospitals, NGOs
+- Filter markers by category
+- Data fetched from Supabase
+
+5. **Report a Crime**
+- Multi-step form:
+  - Type of incident
+  - Auto-location (editable)
+  - Optional photo + description
+  - Choose: Anonymous or email-authenticated
+- Store in Supabase securely
+
+6. **Learn Hub**
+- Accordion with:
+  - Consent education
+  - Indian legal rights
+  - What to do in an attack
+- Include illustrations / Lottie animations
+
+7. **Settings**
+- Manage emergency contacts
+- Language switch (English, Hindi)
+- Enable/disable location tracking
+- Light/dark mode
+- Panic Mode: Hides app when tapped
+
+8. **Safe Walk**
+- Share live location for 30 mins with trusted contact
+- Live map + timer + cancel button
+
+9. **Admin Dashboard (Optional)**
+- View reports, incidents, and alerts
+- Review anonymous and verified reports
+- Access police-transcribed events (HearShot)
+
+---
+
+💻 FOLDER STRUCTURE
+
+**Frontend (React):**
+- /src
+  - /pages (Home, SOS, Report, Map, Learn, Settings)
+  - /components (Card, Button, Map, ReportForm)
+  - /hooks (useLocation, useSOS)
+  - /context (auth, theme)
+  - /services (Twilio, Supabase, Whisper)
+- Mobile responsive
+- Bottom tab navigation
+- Use ShadCN UI and TailwindCSS utilities
+
+**Backend (Node.js or Python):**
+- /api
+  - /sos/send
+  - /incident/report
+  - /hearshot/transcribe
+  - /admin/reports
+- utils/ (Twilio, Whisper, GPT, Maps API)
+
+---
+
+🎨 UI DESIGN
+- Mobile-first, calm but alert tone
+- Fonts: Poppins or Inter
+- Colors:
+  - Primary: Midnight Blue `#2c3e50`
+  - Accent: Coral `#FF5252` or Amber `#FFC107`
+- Use gradients, cards, and modals
+- Bottom tab for Home, Map, SOS, Learn, Settings
+- Add meaningful micro-interactions and transitions
+
+---
+
+🔒 SECURITY
+- Encrypt stored data (Supabase)
+- Use HTTPS everywhere
+- Auth with Supabase (email/password, optional anonymous)
+- Panic mode disguises app
+- Admin routes protected with JWT tokens
+
+---
+
+📦 DEPLOYMENT
+- Frontend on Vercel
+- Backend on Render or Vercel Serverless
+- Supabase hosted DB + Auth
+
+---
+
+🧪 OPTIONAL ADVANCED
+- Transcription admin feed
+- Incident heatmap
+- Community alerts from NGOs
+- Analytics dashboard
+
+Generate full working project using these features and structure. 
+Add clear folder organization, reusable components, and documentation.
