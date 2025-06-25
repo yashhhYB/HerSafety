@@ -26,8 +26,15 @@ export function Home({ onNavigate }: HomeProps) {
       onClick: () => onNavigate('sos'),
     },
     {
-      title: 'Find Nearby Help',
-      subtitle: 'Safe Zones',
+      title: 'AI Guardian',
+      subtitle: 'Smart Protection',
+      icon: 'brain',
+      gradient: 'gradient-purple',
+      onClick: () => onNavigate('guardian'),
+    },
+    {
+      title: 'Safe Zones',
+      subtitle: 'Find Help Nearby',
       icon: 'map-marker-alt',
       gradient: 'gradient-blue',
       onClick: () => onNavigate('map'),
@@ -39,58 +46,73 @@ export function Home({ onNavigate }: HomeProps) {
       gradient: 'gradient-amber',
       onClick: () => setShowReportModal(true),
     },
-    {
-      title: 'Learn About Safety',
-      subtitle: 'Education Hub',
-      icon: 'graduation-cap',
-      gradient: 'gradient-purple',
-      onClick: () => onNavigate('learn'),
-    },
   ];
 
   return (
     <div className="screen active">
       {/* Header */}
-      <div className="gradient-primary text-white px-6 py-8">
-        <div className="flex items-center justify-between mb-4">
-          <div>
-            <motion.h1 
-              className="text-2xl font-bold"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              Welcome to Sefty1st
-            </motion.h1>
-            <motion.p 
-              className="text-blue-100 mt-1"
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-            >
-              You are not alone.
-            </motion.p>
+      <div className="relative overflow-hidden">
+        <div className="gradient-primary text-white px-6 py-8 relative">
+          {/* Background Pattern */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-transparent via-white/5 to-transparent"></div>
+            <div className="absolute top-4 right-4 w-32 h-32 bg-white/5 rounded-full blur-xl"></div>
+            <div className="absolute bottom-4 left-4 w-24 h-24 bg-white/5 rounded-full blur-xl"></div>
           </div>
-          <motion.div 
-            className="w-12 h-12 bg-white bg-opacity-20 rounded-full flex items-center justify-center"
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <i className="fas fa-shield-alt text-xl"></i>
-          </motion.div>
+          
+          <div className="relative z-10">
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <motion.h1 
+                  className="text-3xl font-bold text-shadow mb-2"
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  Welcome to Sefty1st
+                </motion.h1>
+                <motion.p 
+                  className="text-blue-100 text-lg font-medium"
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                >
+                  You are not alone.
+                </motion.p>
+              </div>
+              <motion.div 
+                className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center animate-float"
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                <i className="fas fa-shield-alt text-2xl"></i>
+              </motion.div>
+            </div>
+            
+            {/* Enhanced Alert Status */}
+            <motion.div 
+              className="floating-card p-4 flex items-center justify-between"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              <div className="flex items-center space-x-3">
+                <div className="relative">
+                  <div className="w-4 h-4 bg-green-400 rounded-full"></div>
+                  <div className="pulse-ring w-4 h-4 bg-green-400"></div>
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-gray-800">Safety Network Active</p>
+                  <p className="text-xs text-gray-600">All systems operational</p>
+                </div>
+              </div>
+              <div className="text-green-600">
+                <i className="fas fa-check-circle text-lg"></i>
+              </div>
+            </motion.div>
+          </div>
         </div>
-        
-        {/* Alert Status */}
-        <motion.div 
-          className="bg-white bg-opacity-10 rounded-lg p-3 flex items-center space-x-3"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-        >
-          <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-          <span className="text-sm">Your safety network is active</span>
-        </motion.div>
       </div>
 
       {/* Action Cards */}

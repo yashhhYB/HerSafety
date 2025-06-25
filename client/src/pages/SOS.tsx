@@ -80,30 +80,58 @@ export function SOS() {
       </div>
 
       <div className="px-6 py-12 text-center">
-        {/* SOS Button */}
+        {/* Enhanced SOS Button */}
         <motion.div 
           className="relative mb-12"
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
+          {/* Outer glow rings */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <motion.div 
+              className="w-64 h-64 border-2 border-red-300/30 rounded-full"
+              animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.1, 0.3] }}
+              transition={{ duration: 3, repeat: Infinity }}
+            />
+            <motion.div 
+              className="absolute w-56 h-56 border-2 border-red-300/40 rounded-full"
+              animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.1, 0.4] }}
+              transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
+            />
+          </div>
+          
           <motion.button
-            className="w-48 h-48 gradient-accent rounded-full shadow-2xl flex items-center justify-center mx-auto relative overflow-hidden"
+            className="w-48 h-48 gradient-accent rounded-full shadow-2xl flex items-center justify-center mx-auto relative overflow-hidden glow-accent"
             onMouseDown={() => setIsPressed(true)}
             onMouseUp={() => setIsPressed(false)}
             onMouseLeave={() => setIsPressed(false)}
             onClick={handleSOSPress}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            animate={{ 
+              boxShadow: [
+                "0 0 30px rgba(255, 82, 82, 0.4)",
+                "0 0 50px rgba(255, 82, 82, 0.6)",
+                "0 0 30px rgba(255, 82, 82, 0.4)"
+              ]
+            }}
+            transition={{ duration: 2, repeat: Infinity }}
           >
-            <div className="text-white text-center">
-              <i className="fas fa-hand-paper text-4xl mb-3"></i>
-              <p className="font-bold text-xl">SOS</p>
-              <p className="text-sm opacity-90">Tap to Alert</p>
+            <div className="text-white text-center relative z-10">
+              <motion.i 
+                className="fas fa-exclamation-triangle text-5xl mb-3"
+                animate={{ rotate: [0, 5, -5, 0] }}
+                transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 2 }}
+              />
+              <p className="font-bold text-2xl tracking-wider">SOS</p>
+              <p className="text-sm opacity-90 font-medium">Emergency Alert</p>
             </div>
+            
+            {/* Animated pulse effect */}
             <motion.div 
-              className="absolute inset-0 bg-white bg-opacity-10 rounded-full"
-              animate={{ scale: [1, 1.2, 1] }}
+              className="absolute inset-0 bg-white/10 rounded-full"
+              animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.1, 0.5] }}
               transition={{ duration: 2, repeat: Infinity }}
             />
           </motion.button>

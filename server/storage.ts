@@ -121,7 +121,9 @@ export class MemStorage implements IStorage {
     const user: User = { 
       ...insertUser, 
       id, 
-      createdAt: new Date()
+      createdAt: new Date(),
+      phone: insertUser.phone || null,
+      email: insertUser.email || null
     };
     this.users.set(id, user);
     return user;
@@ -134,7 +136,12 @@ export class MemStorage implements IStorage {
 
   async createEmergencyContact(insertContact: InsertEmergencyContact): Promise<EmergencyContact> {
     const id = this.currentContactId++;
-    const contact: EmergencyContact = { ...insertContact, id };
+    const contact: EmergencyContact = { 
+      ...insertContact, 
+      id,
+      relationship: insertContact.relationship || null,
+      isPrimary: insertContact.isPrimary || null
+    };
     this.emergencyContacts.set(id, contact);
     return contact;
   }
@@ -168,7 +175,13 @@ export class MemStorage implements IStorage {
     const incident: Incident = { 
       ...insertIncident, 
       id, 
-      createdAt: new Date()
+      createdAt: new Date(),
+      userId: insertIncident.userId || null,
+      description: insertIncident.description || null,
+      latitude: insertIncident.latitude || null,
+      longitude: insertIncident.longitude || null,
+      isAnonymous: insertIncident.isAnonymous || null,
+      status: insertIncident.status || null
     };
     this.incidents.set(id, incident);
     return incident;
@@ -184,7 +197,10 @@ export class MemStorage implements IStorage {
     const alert: SosAlert = { 
       ...insertAlert, 
       id, 
-      createdAt: new Date()
+      createdAt: new Date(),
+      status: insertAlert.status || null,
+      latitude: insertAlert.latitude || null,
+      longitude: insertAlert.longitude || null
     };
     this.sosAlerts.set(id, alert);
     return alert;
@@ -210,7 +226,12 @@ export class MemStorage implements IStorage {
 
   async createSafeZone(insertSafeZone: InsertSafeZone): Promise<SafeZone> {
     const id = this.currentSafeZoneId++;
-    const safeZone: SafeZone = { ...insertSafeZone, id };
+    const safeZone: SafeZone = { 
+      ...insertSafeZone, 
+      id,
+      phone: insertSafeZone.phone || null,
+      isActive: insertSafeZone.isActive || null
+    };
     this.safeZones.set(id, safeZone);
     return safeZone;
   }
@@ -222,7 +243,14 @@ export class MemStorage implements IStorage {
 
   async createUserSettings(insertSettings: InsertUserSettings): Promise<UserSettings> {
     const id = this.currentSettingsId++;
-    const settings: UserSettings = { ...insertSettings, id };
+    const settings: UserSettings = { 
+      ...insertSettings, 
+      id,
+      locationTracking: insertSettings.locationTracking || null,
+      panicMode: insertSettings.panicMode || null,
+      darkMode: insertSettings.darkMode || null,
+      language: insertSettings.language || null
+    };
     this.userSettings.set(id, settings);
     return settings;
   }

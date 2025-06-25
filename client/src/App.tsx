@@ -8,6 +8,7 @@ import { BottomNavigation } from '@/components/BottomNavigation';
 import { Home } from '@/pages/Home';
 import { Map } from '@/pages/Map';
 import { SOS } from '@/pages/SOS';
+import { Guardian } from '@/pages/Guardian';
 import { Learn } from '@/pages/Learn';
 import { Settings } from '@/pages/Settings';
 
@@ -22,6 +23,8 @@ function App() {
         return <Map />;
       case 'sos':
         return <SOS />;
+      case 'guardian':
+        return <Guardian />;
       case 'learn':
         return <Learn />;
       case 'settings':
