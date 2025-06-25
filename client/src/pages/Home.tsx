@@ -52,7 +52,7 @@ export function Home({ onNavigate }: HomeProps) {
     <div className="screen active">
       {/* Header */}
       <div className="relative overflow-hidden">
-        <div className="gradient-primary text-white px-6 py-8 relative">
+        <div className="gradient-primary text-white px-4 sm:px-6 py-6 sm:py-8 relative">
           {/* Background Pattern */}
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-transparent via-white/5 to-transparent"></div>
@@ -116,8 +116,8 @@ export function Home({ onNavigate }: HomeProps) {
       </div>
 
       {/* Action Cards */}
-      <div className="px-6 py-6 space-y-4">
-        <div className="grid grid-cols-2 gap-4">
+      <div className="px-4 sm:px-6 py-6 space-y-4">
+        <div className="grid grid-cols-2 gap-3 sm:gap-4">
           {actionCards.map((card, index) => (
             <motion.div
               key={card.title}
@@ -132,9 +132,9 @@ export function Home({ onNavigate }: HomeProps) {
       </div>
 
       {/* Recent Alerts */}
-      <div className="px-6 pb-6">
+      <div className="px-4 sm:px-6 pb-6">
         <motion.h3 
-          className="font-semibold text-gray-800 mb-4 flex items-center"
+          className="font-semibold text-gray-800 mb-4 flex items-center text-lg"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.8 }}

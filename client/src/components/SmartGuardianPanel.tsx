@@ -144,12 +144,12 @@ export function SmartGuardianPanel() {
       {/* Test Features */}
       <div className="pt-4 border-t">
         <h4 className="font-semibold text-gray-800 mb-3">Test Features</h4>
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <Button
             variant="outline"
             size="sm"
             onClick={() => alert('Voice test triggered!')}
-            className="text-xs"
+            className="text-xs touch-manipulation"
           >
             <i className="fas fa-microphone mr-1"></i>
             Test Voice
@@ -158,7 +158,7 @@ export function SmartGuardianPanel() {
             variant="outline"
             size="sm"
             onClick={() => alert('Motion test triggered!')}
-            className="text-xs"
+            className="text-xs touch-manipulation"
           >
             <i className="fas fa-mobile-alt mr-1"></i>
             Test Motion

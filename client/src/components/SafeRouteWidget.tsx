@@ -229,14 +229,14 @@ export function SafeRouteWidget() {
       {!isLoading && routes.length === 0 && (
         <div className="space-y-3">
           <h4 className="font-semibold text-gray-800">Quick Destinations</h4>
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             {['Home', 'Work', 'Hospital', 'Police Station'].map((dest) => (
               <Button
                 key={dest}
                 variant="outline"
                 size="sm"
                 onClick={() => setDestination(dest)}
-                className="text-xs"
+                className="text-xs touch-manipulation"
               >
                 <i className="fas fa-map-marker-alt mr-1"></i>
                 {dest}

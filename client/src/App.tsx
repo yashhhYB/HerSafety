@@ -11,9 +11,11 @@ import { SOS } from '@/pages/SOS';
 import { Guardian } from '@/pages/Guardian';
 import { Learn } from '@/pages/Learn';
 import { Settings } from '@/pages/Settings';
+import { useTouch } from '@/hooks/useTouch';
 
 function App() {
   const [activeTab, setActiveTab] = useState('home');
+  useTouch(); // Initialize touch handling
 
   const renderActiveScreen = () => {
     switch (activeTab) {

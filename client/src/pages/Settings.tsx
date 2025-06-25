@@ -101,7 +101,7 @@ export function Settings() {
         </motion.p>
       </div>
 
-      <div className="px-6 py-6 space-y-6">
+      <div className="px-4 sm:px-6 py-6 space-y-6">
         {/* Emergency Contacts Section */}
         <motion.div 
           className="bg-white rounded-2xl p-6 shadow-sm border"

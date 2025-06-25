@@ -16,13 +16,13 @@ const tabs = [
 
 export function BottomNavigation({ activeTab, onTabChange }: BottomNavigationProps) {
   return (
-    <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-sm">
-      <div className="floating-card mx-4 mb-4 px-2 py-3 rounded-3xl">
-        <div className="flex justify-around items-center">
+    <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-md z-50">
+      <div className="floating-card mx-3 mb-safe-area-inset-bottom mb-4 px-2 py-3 rounded-3xl bg-white/95 backdrop-blur-xl border border-white/30 shadow-2xl">
+        <div className="flex justify-around items-center gap-1">
           {tabs.map((tab, index) => (
             <motion.button
               key={tab.id}
-              className={`nav-item relative ${activeTab === tab.id ? 'active' : ''} ${
+              className={`nav-item relative flex-1 max-w-[80px] ${activeTab === tab.id ? 'active' : ''} ${
                 tab.id === 'sos' ? 'sos-tab' : ''
               } ${tab.id === 'guardian' ? 'guardian-tab' : ''}`}
               onClick={() => onTabChange(tab.id)}

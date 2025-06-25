@@ -24,14 +24,14 @@ export function ActionCard({ title, subtitle, icon, gradient, onClick }: ActionC
       
       <div className="text-center relative z-10">
         <motion.div 
-          className="w-14 h-14 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:bg-white/30 transition-colors duration-300"
+          className="w-12 h-12 sm:w-14 sm:h-14 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4 group-hover:bg-white/30 transition-colors duration-300"
           whileHover={{ rotate: 5 }}
           transition={{ duration: 0.2 }}
         >
-          <i className={`fas fa-${icon} text-2xl`}></i>
+          <i className={`fas fa-${icon} text-xl sm:text-2xl`}></i>
         </motion.div>
-        <h3 className="font-bold text-base mb-1">{title}</h3>
-        <p className="text-sm opacity-90">{subtitle}</p>
+        <h3 className="font-bold text-sm sm:text-base mb-1">{title}</h3>
+        <p className="text-xs sm:text-sm opacity-90">{subtitle}</p>
       </div>
       
       {/* Corner accent */}

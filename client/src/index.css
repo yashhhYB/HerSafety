@@ -67,6 +67,8 @@
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overscroll-behavior: none;
+    -webkit-overflow-scrolling: touch;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -88,7 +90,13 @@
 
 @layer components {
   .mobile-container {
-    @apply max-w-sm mx-auto bg-background min-h-screen relative shadow-2xl border-x border-border dark:border-gray-800;
+    @apply w-full max-w-md mx-auto bg-background min-h-screen relative;
+  }
+  
+  @media (min-width: 440px) {
+    .mobile-container {
+      @apply shadow-2xl border-x border-border dark:border-gray-800;
+    }
   }
 
   .status-bar {
@@ -97,15 +105,18 @@
   }
 
   .screen {
-    @apply pb-20 min-h-screen bg-gradient-to-br from-background to-muted;
+    @apply pb-24 min-h-screen bg-gradient-to-br from-background to-muted px-4 sm:px-6;
   }
 
   .action-card {
-    @apply rounded-2xl p-6 shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 cursor-pointer backdrop-blur-sm border border-white/10;
+    @apply rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transform hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 cursor-pointer backdrop-blur-sm border border-white/10 touch-manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .nav-item {
-    @apply flex flex-col items-center py-3 px-4 rounded-2xl transition-all duration-300 text-muted-foreground hover:text-foreground;
+    @apply flex flex-col items-center py-2 px-2 rounded-2xl transition-all duration-300 text-muted-foreground hover:text-foreground touch-manipulation;
+    -webkit-tap-highlight-color: transparent;
+    min-height: 56px;
   }
 
   .nav-item.active {
@@ -116,6 +127,14 @@
   .nav-item:not(.active):hover {
     @apply text-primary bg-muted;
     background-color: hsl(var(--muted) / 0.5);
+  }
+  
+  .nav-item i {
+    @apply text-base sm:text-lg mb-1;
+  }
+  
+  .nav-item span {
+    @apply text-xs font-medium;
   }
 
   .card-glass {
@@ -162,7 +181,7 @@
   }
 
   .floating-card {
-    @apply bg-white dark:bg-gray-900 backdrop-blur-xl border border-white dark:border-gray-700 shadow-2xl rounded-3xl;
+    @apply bg-white dark:bg-gray-900 backdrop-blur-xl border border-white dark:border-gray-700 shadow-2xl rounded-2xl sm:rounded-3xl;
     background-color: hsl(0 0% 100% / 0.9);
     border-color: hsl(0 0% 100% / 0.3);
   }
@@ -170,6 +189,15 @@
   .dark .floating-card {
     background-color: hsl(220 14% 11% / 0.9);
     border-color: hsl(215 28% 17% / 0.3);
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
   }
 
   .text-shadow {
@@ -219,6 +247,14 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+  
+  .touch-manipulation {
+    touch-action: manipulation;
+  }
+  
+  .mb-safe-area-inset-bottom {
+    margin-bottom: env(safe-area-inset-bottom);
+  }
 }
 
 @keyframes float {
@@ -229,4 +265,27 @@
 @keyframes glow {
   from { box-shadow: 0 0 20px -10px currentColor; }
   to { box-shadow: 0 0 20px 0px currentColor; }
+}
+
+/* Touch device optimizations */
+.touch-device button,
+.touch-device .action-card,
+.touch-device .nav-item {
+  min-height: 44px; /* Minimum touch target size */
+  -webkit-tap-highlight-color: transparent;
+}
+
+.touch-device .action-card {
+  padding: 16px;
+}
+
+.touch-device .nav-item {
+  padding: 8px 12px;
+}
+
+/* Safe area handling for devices with notches */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .mobile-container {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
 }

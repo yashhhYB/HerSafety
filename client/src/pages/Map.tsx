@@ -63,7 +63,7 @@ export function Map() {
         transition={{ duration: 0.5, delay: 0.3 }}
       >
         {/* Simulated Map Background */}
-        <div className="h-96 bg-gray-200 relative overflow-hidden">
+        <div className="h-64 sm:h-80 md:h-96 bg-gray-200 relative overflow-hidden touch-manipulation">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-100 to-green-100"></div>
           
           {/* Street patterns */}
@@ -126,12 +126,12 @@ export function Map() {
 
       {/* Location Filter */}
       <motion.div 
-        className="px-6 py-4"
+        className="px-4 sm:px-6 py-4"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.7 }}
       >
-        <div className="flex space-x-3 overflow-x-auto">
+        <div className="flex space-x-3 overflow-x-auto pb-2 scrollbar-hide">
           <Button
             size="sm"
             variant={selectedFilter === 'all' ? 'default' : 'outline'}
@@ -157,7 +157,7 @@ export function Map() {
 
       {/* Nearby Locations List */}
       <motion.div 
-        className="px-6 pb-6"
+        className="px-4 sm:px-6 pb-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.8 }}

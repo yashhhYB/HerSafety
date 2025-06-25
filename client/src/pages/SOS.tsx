@@ -79,7 +79,7 @@ export function SOS() {
         </motion.div>
       </div>
 
-      <div className="px-6 py-12 text-center">
+      <div className="px-4 sm:px-6 py-8 sm:py-12 text-center">
         {/* Enhanced SOS Button */}
         <motion.div 
           className="relative mb-12"
@@ -102,7 +102,8 @@ export function SOS() {
           </div>
           
           <motion.button
-            className="w-48 h-48 gradient-accent rounded-full shadow-2xl flex items-center justify-center mx-auto relative overflow-hidden glow-accent"
+            className="w-40 h-40 sm:w-48 sm:h-48 gradient-accent rounded-full shadow-2xl flex items-center justify-center mx-auto relative overflow-hidden glow-accent touch-manipulation"
+            style={{ WebkitTapHighlightColor: 'transparent' }}
             onMouseDown={() => setIsPressed(true)}
             onMouseUp={() => setIsPressed(false)}
             onMouseLeave={() => setIsPressed(false)}
@@ -120,12 +121,12 @@ export function SOS() {
           >
             <div className="text-white text-center relative z-10">
               <motion.i 
-                className="fas fa-exclamation-triangle text-5xl mb-3"
+                className="fas fa-exclamation-triangle text-4xl sm:text-5xl mb-2 sm:mb-3"
                 animate={{ rotate: [0, 5, -5, 0] }}
                 transition={{ duration: 0.5, repeat: Infinity, repeatDelay: 2 }}
               />
-              <p className="font-bold text-2xl tracking-wider">SOS</p>
-              <p className="text-sm opacity-90 font-medium">Emergency Alert</p>
+              <p className="font-bold text-xl sm:text-2xl tracking-wider">SOS</p>
+              <p className="text-xs sm:text-sm opacity-90 font-medium">Emergency Alert</p>
             </div>
             
             {/* Animated pulse effect */}

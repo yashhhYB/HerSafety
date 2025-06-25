@@ -70,7 +70,7 @@ export function Learn() {
         </motion.p>
       </div>
 
-      <div className="px-6 py-6 space-y-4">
+      <div className="px-4 sm:px-6 py-6 space-y-4">
         <Accordion type="single" collapsible value={openAccordion} onValueChange={setOpenAccordion}>
           {educationContent.map((item, index) => (
             <motion.div
@@ -117,7 +117,7 @@ export function Learn() {
 
       {/* Emergency Numbers */}
       <motion.div 
-        className="px-6 pb-6"
+        className="px-4 sm:px-6 pb-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.5 }}
